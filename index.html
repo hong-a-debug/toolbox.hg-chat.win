@@ -3,326 +3,45 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-  <title>红怪工具箱</title>
+  <title>404</title>
   <link rel="icon" type="image/png" href="https://toolbox.hg-chat.win/icon/icon.png">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
-    /* 所有指向 https://blog.hg-chat.win 的链接已替换为 https://toolbox.hg-chat.win */
-    /* 其余样式保持不变 */
-    :root{--bg:#f5f6f8;--card:#fff;--border:#e8eaed;--text:#1e1e2a;--text2:#6b6b7a;--text3:#99a3b1;--accent:#4a6fa5;--accent-hover:#3a5a8a;--accent-light:#e8eef5;--shadow:0 4px 20px rgba(0,0,0,0.04);--radius:16px;--tag-bg:#f0f2f5;--header-bg:linear-gradient(135deg,#1a1a2e 0%,#2a2a4e 50%,#1a1a2e 100%);--scrollbar:#d0d0d8;--success:#4CAF50;--orange:#e58c17;--hover-bg:#f0f2f5;--danger:#e74c3c;--online:#27ae60;--offline:#e74c3c}
-    [data-theme="dark"]{--bg:#0d0d0d;--card:#1a1a1a;--border:#2a2a2a;--text:#e8e8e8;--text2:#9a9aaa;--text3:#6a6a7a;--accent:#6a9fc5;--accent-hover:#8ab5d5;--accent-light:#1a2a3a;--shadow:0 4px 20px rgba(0,0,0,0.4);--tag-bg:#252525;--header-bg:#0a0a0a;--hover-bg:#252525;--online:#2ecc71;--offline:#ff6b6b}
     *{margin:0;padding:0;box-sizing:border-box}
-    html{scroll-behavior:smooth}
-    body{background:var(--bg);color:var(--text);font-family:-apple-system,"Segoe UI",Roboto,"Helvetica Neue",sans-serif;line-height:1.7;transition:background .3s,color .3s;min-height:100vh;padding:0 20px 40px}
-    ::-webkit-scrollbar{width:6px;height:6px}
-    ::-webkit-scrollbar-track{background:var(--bg)}
-    ::-webkit-scrollbar-thumb{background:var(--scrollbar);border-radius:10px}
-    a{text-decoration:none;color:var(--accent)}
-    a:hover{color:var(--accent-hover)}
-    img{max-width:100%;display:block}
-    .page{max-width:1100px;margin:0 auto}
-    #header{background:var(--header-bg);border-radius:0 0 40px 40px;padding:20px 40px 28px;margin:0 -20px 28px;text-align:center;position:relative;overflow:hidden}
-    #header::before{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")}
-    #header *{position:relative;z-index:1}
-    .nav-bar{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;padding-bottom:14px}
-    .nav-bar .logo{font-size:1.3rem;font-weight:700;color:#fff;letter-spacing:-.5px}
-    .nav-bar .logo i{margin-right:8px;color:#f5c542}
-    .nav-links{display:flex;gap:20px;align-items:center;flex-wrap:wrap}
-    .nav-links a{color:rgba(255,255,255,0.7);font-size:.9rem;font-weight:500;transition:color .2s}
-    .nav-links a:hover,.nav-links a.active{color:#fff}
-    .nav-actions{display:flex;gap:10px;align-items:center}
-    .nav-actions button{background:rgba(255,255,255,0.08);border:none;color:#fff;width:36px;height:36px;border-radius:50%;cursor:pointer;font-size:.95rem;transition:background .2s;display:flex;align-items:center;justify-content:center}
-    .nav-actions button:hover{background:rgba(255,255,255,0.18)}
-    #site-title{font-size:2.4rem;font-weight:700;color:#fff;letter-spacing:-1px;margin-top:4px}
-    #site-title i{color:#f5c542}
-    #site-subtitle{font-size:1rem;color:rgba(255,255,255,0.7);margin-top:4px}
-    .main-grid{display:grid;grid-template-columns:1fr 280px;gap:28px;margin-top:6px}
-    .tool-section{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);padding:22px 24px;border:1px solid var(--border);margin-bottom:24px}
-    .tool-section .tool-title{font-size:1.1rem;font-weight:650;margin-bottom:14px;display:flex;align-items:center;gap:10px}
-    .tool-section .tool-title i{color:var(--accent)}
-    .tool-section .tool-title .badge{font-size:.65rem;background:var(--accent);color:#fff;padding:1px 12px;border-radius:20px;font-weight:400}
-    .search-section{margin-bottom:20px}
-    .search-container{display:flex;gap:10px;align-items:center}
-    .search-input{flex:1;padding:12px 18px;border:2px solid var(--border);border-radius:40px;font-size:.95rem;background:var(--card);color:var(--text);outline:none;transition:border .2s;font-family:inherit}
-    .search-input:focus{border-color:var(--accent)}
-    .search-input::placeholder{color:var(--text3)}
-    .search-btn{background:var(--accent);color:#fff;border:none;padding:12px 22px;border-radius:40px;font-size:.95rem;font-weight:500;cursor:pointer;transition:all .2s;font-family:inherit}
-    .search-btn:hover{background:var(--accent-hover);transform:translateY(-1px)}
-    .no-result{text-align:center;padding:30px 0;color:var(--text3);font-size:.95rem;display:none}
-    .no-result.show{display:block}
-    .links-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:24px}
-    .link-card{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);padding:18px 20px;display:flex;align-items:center;gap:14px;transition:all .2s;cursor:pointer;border:1px solid var(--border);color:var(--text)}
-    .link-card:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(0,0,0,0.08);border-color:var(--accent)}
-    .link-card .icon{width:44px;height:44px;background:var(--accent-light);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.3rem;color:var(--accent);flex-shrink:0}
-    .link-card .info{flex:1;min-width:0}
-    .link-card .info .name{font-weight:600;font-size:.95rem;color:var(--text)}
-    .link-card .info .desc{font-size:.8rem;color:var(--text2)}
-    .link-card .badge{font-size:.65rem;background:var(--tag-bg);padding:1px 10px;border-radius:20px;color:var(--text3);white-space:nowrap}
-    .link-card.hidden{display:none}
-    .link-card.tool .icon{background:var(--orange);color:#fff}
-    .link-card.tool .badge{background:var(--orange);color:#fff}
-    .aside-content{display:flex;flex-direction:column;gap:20px}
-    .card-widget{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);padding:20px 22px;border:1px solid var(--border)}
-    .card-widget .headline{font-size:.95rem;font-weight:650;color:var(--text);margin-bottom:12px;display:flex;align-items:center;gap:8px}
-    .card-widget .headline i{color:var(--accent)}
-    .card-info{text-align:center}
-    .card-info .avatar{width:72px;height:72px;border-radius:50%;overflow:hidden;margin:0 auto 10px;border:3px solid var(--accent)}
-    .card-info .avatar img{width:100%;height:100%;object-fit:cover}
-    .card-info .name{font-size:1.15rem;font-weight:650}
-    .card-info .bio{font-size:.82rem;color:var(--text2);margin-top:2px}
-    .stats{display:flex;justify-content:center;gap:28px;margin:12px 0 6px}
-    .stats .num{font-weight:650;font-size:1.1rem}
-    .stats .label{font-size:.72rem;color:var(--text2)}
-    .social-icons{display:flex;justify-content:center;gap:14px;margin-top:10px}
-    .social-icons a{width:38px;height:38px;border-radius:50%;background:var(--tag-bg);display:flex;align-items:center;justify-content:center;color:var(--text2);font-size:1.1rem;transition:all .2s}
-    .social-icons a:hover{background:var(--accent);color:#fff;transform:translateY(-2px)}
-    #footer{text-align:center;padding:30px 0 10px;color:var(--text2);font-size:.82rem;border-top:1px solid var(--border);margin-top:36px}
-    #footer .heart{color:#e74c3c}
-    #rightside{position:fixed;bottom:30px;right:30px;display:flex;flex-direction:column;gap:10px;z-index:999}
-    #rightside button{width:44px;height:44px;border-radius:50%;border:none;background:var(--card);color:var(--text);box-shadow:var(--shadow);cursor:pointer;font-size:1.1rem;transition:all .2s}
-    #rightside button:hover{background:var(--accent);color:#fff;transform:translateY(-2px)}
-    .modal-overlay{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.5);display:none;justify-content:center;align-items:center;z-index:1000;backdrop-filter:blur(4px)}
-    .modal-overlay.active{display:flex}
-    .modal-box{background:var(--card);border-radius:var(--radius);padding:28px 30px;width:420px;max-width:92%;box-shadow:0 20px 60px rgba(0,0,0,0.3);border:1px solid var(--border)}
-    .modal-box h3{font-size:1.1rem;margin-bottom:10px;color:var(--text)}
-    .modal-box .tip{background:var(--accent-light);padding:8px 14px;border-radius:8px;font-size:.82rem;color:var(--accent);margin-bottom:14px}
-    .modal-box .content{background:var(--tag-bg);padding:12px 16px;border-radius:8px;font-family:monospace;font-size:.85rem;word-break:break-all;color:var(--text);margin-bottom:18px;user-select:all}
-    .modal-box .btn-group{display:flex;gap:12px;justify-content:flex-end}
-    .modal-box .btn-group button{border:none;padding:8px 24px;border-radius:40px;font-size:.9rem;font-weight:500;cursor:pointer;transition:all .2s;font-family:inherit}
-    .btn-primary{background:var(--accent);color:#fff}
-    .btn-primary:hover{background:var(--accent-hover);transform:translateY(-1px)}
-    .btn-secondary{background:var(--tag-bg);color:var(--text2)}
-    .btn-secondary:hover{background:var(--border);transform:translateY(-1px)}
-    .btn-success{background:var(--success);color:#fff}
-    .btn-success:hover{opacity:.85;transform:translateY(-1px)}
-    .tool-row{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
-    .tool-row input,.tool-row select{padding:10px 16px;border:2px solid var(--border);border-radius:8px;background:var(--card);color:var(--text);font-size:.9rem;outline:none;transition:border .2s;font-family:inherit;flex:1;min-width:120px}
-    .tool-row input:focus,.tool-row select:focus{border-color:var(--accent)}
-    .tool-row input::placeholder{color:var(--text3)}
-    .tool-row button{padding:10px 22px;border:none;border-radius:8px;font-size:.9rem;font-weight:600;cursor:pointer;transition:all .2s;font-family:inherit;white-space:nowrap}
-    .btn-accent{background:var(--accent);color:#fff}
-    .btn-accent:hover{background:var(--accent-hover);transform:translateY(-1px)}
-    .btn-success{background:var(--success);color:#fff}
-    .btn-success:hover{opacity:.85;transform:translateY(-1px)}
-    .btn-danger{background:var(--danger);color:#fff}
-    .btn-danger:hover{opacity:.85;transform:translateY(-1px)}
-    .chick-preview{display:none;margin-top:16px;gap:20px;flex-wrap:wrap;justify-content:center}
-    .chick-preview.show{display:flex}
-    .chick-preview .box{text-align:center}
-    .chick-preview .box .img{width:140px;height:140px;background:var(--tag-bg);border:2px solid var(--border);border-radius:12px;display:flex;align-items:center;justify-content:center;overflow:hidden;margin:0 auto}
-    .chick-preview .box .img img{max-width:100%;max-height:100%;object-fit:contain}
-    .chick-preview .box p{font-size:.75rem;color:var(--text2);margin-top:6px}
-    .mc-result{display:none;margin-top:16px}
-    .mc-result.show{display:block}
-    .mc-result .rcard{background:var(--tag-bg);border-radius:12px;padding:16px 20px;border:1px solid var(--border)}
-    .mc-result .rheader{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;margin-bottom:10px}
-    .mc-result .raddr{font-weight:700;font-size:1.1rem;word-break:break-all}
-    .mc-result .rstatus{padding:3px 16px;border-radius:20px;font-weight:700;font-size:.85rem;color:#fff}
-    .mc-result .rstatus.online{background:var(--online)}
-    .mc-result .rstatus.offline{background:var(--offline)}
-    .mc-result .rstatus.unknown{background:var(--text3)}
-    .mc-result .rinfo{padding:4px 0;font-size:.9rem;border-bottom:1px solid var(--border);display:flex;gap:12px}
-    .mc-result .rinfo:last-child{border-bottom:none}
-    .mc-result .rlabel{color:var(--text2);min-width:60px}
-    .mc-result .rvalue{color:var(--text);word-break:break-all}
-    .mc-result .rvalue.motd{font-size:.85rem;color:var(--text2)}
-    .history-tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
-    .history-tag{padding:3px 12px;background:var(--tag-bg);border:1px solid var(--border);border-radius:16px;font-size:.75rem;color:var(--text2);cursor:pointer;transition:all .2s}
-    .history-tag:hover{border-color:var(--accent);color:var(--accent)}
-    .history-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px}
-    .history-header .htitle{font-size:.78rem;color:var(--text2)}
-    .history-header .hclear{padding:2px 12px;border:none;border-radius:12px;background:var(--danger);color:#fff;font-size:.7rem;cursor:pointer;font-family:inherit;transition:all .2s}
-    .history-header .hclear:hover{opacity:.8}
-    .java-input{display:flex;flex:1;gap:8px}
-    .java-input.hide{display:none}
-    .bedrock-inputs{display:none;gap:8px;flex:1;flex-wrap:wrap}
-    .bedrock-inputs.show{display:flex}
-    @media(max-width:860px){.main-grid{grid-template-columns:1fr}.links-grid{grid-template-columns:1fr}#header{padding:16px 20px 24px;margin:0 -20px 20px}#site-title{font-size:1.8rem}.nav-links{gap:12px}.nav-links a{font-size:.82rem}.nav-bar .logo{font-size:1.1rem}.tool-row{flex-direction:column}.tool-row input,.tool-row select,.tool-row button{width:100%}}
-    @media(max-width:480px){body{padding:0 12px 30px}#header{padding:12px 16px 20px;border-radius:0 0 24px 24px}#site-title{font-size:1.4rem}#site-subtitle{font-size:.85rem}.search-container{flex-direction:column}.search-btn{width:100%}.link-card{padding:14px 16px}.link-card .icon{width:38px;height:38px;font-size:1rem}.link-card .info .name{font-size:.88rem}.card-widget{padding:14px 16px}.modal-box{padding:20px}#rightside{bottom:16px;right:16px}#rightside button{width:38px;height:38px;font-size:.9rem}.chick-preview .box .img{width:110px;height:110px}}
+    body{
+      background:#f5f6f8;
+      min-height:100vh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-family:-apple-system,"Segoe UI",Roboto,sans-serif;
+      flex-direction:column;
+    }
+    .error-code{
+      font-size:20vw;
+      font-weight:800;
+      letter-spacing:-4px;
+      background:linear-gradient(135deg,#1a1a2e 0%,#2a2a4e 50%,#1a1a2e 100%);
+      -webkit-background-clip:text;
+      -webkit-text-fill-color:transparent;
+      background-clip:text;
+      line-height:1;
+      padding:0 20px;
+    }
+    .error-msg{
+      margin-top:12px;
+      font-size:1.2rem;
+      color:#6b6b7a;
+      font-weight:400;
+      letter-spacing:1px;
+    }
+    @media(min-width:800px){
+      .error-code{font-size:180px}
+      .error-msg{font-size:1.4rem}
+    }
   </style>
 </head>
 <body>
-<div class="page">
-  <header id="header">
-    <nav class="nav-bar">
-      <a href="#" class="logo"><i class="fas fa-cube"></i>红怪工具箱</a>
-      <div class="nav-links">
-        <a href="https://www.hg-chat.win" class="active">主页</a>
-      </div>
-      <div class="nav-actions">
-        <button id="themeBtn" onclick="toggleTheme()" title="切换主题"><i class="fas fa-moon"></i></button>
-      </div>
-    </nav>
-    <h1 id="site-title"><i class="fas fa-cube"></i> 红怪工具箱</h1>
-    <div id="site-subtitle">⛏️ 挖矿 · 建筑 · 红石 · 生存 · 工具</div>
-  </header>
-
-  <div class="main-grid">
-    <main>
-      <div class="search-section">
-        <div class="search-container">
-          <input type="text" id="searchInput" class="search-input" placeholder="搜索链接...">
-          <button id="searchBtn" class="search-btn">搜索</button>
-        </div>
-      </div>
-
-      <div class="links-grid" id="linksGrid">
-        <a href="https://link.hg-chat.win/bilibili" target="_blank" class="link-card" data-name="红怪的B站首页" data-desc="B站主页"><div class="icon"><i class="fab fa-bilibili"></i></div><div class="info"><div class="name">红怪的B站首页</div><div class="desc">B站主页</div></div><span class="badge">跳转</span></a>
-        <a href="https://link.hg-chat.win/youtube" target="_blank" class="link-card" data-name="红怪的YouTube频道" data-desc="YouTube 频道"><div class="icon"><i class="fab fa-youtube"></i></div><div class="info"><div class="name">红怪的YouTube频道</div><div class="desc">YouTube 频道</div></div><span class="badge">订阅</span></a>
-        <a href="https://link.hg-chat.win/discord" target="_blank" class="link-card" data-name="Discord 社区" data-desc="红怪的 Discord 邀请链接"><div class="icon"><i class="fab fa-discord"></i></div><div class="info"><div class="name">Discord 社区</div><div class="desc">红怪的 Discord 邀请链接</div></div><span class="badge">邀请</span></a>
-        <a href="https://link.hg-chat.win/github" target="_blank" class="link-card" data-name="GitHub 主页" data-desc="杂七杂八的东西"><div class="icon"><i class="fab fa-github"></i></div><div class="info"><div class="name">GitHub 主页</div><div class="desc">杂七杂八的东西</div></div><span class="badge">代码</span></a>
-        <a href="https://link.hg-chat.win/modrinth" target="_blank" class="link-card" data-name="红怪的Modrinth主页" data-desc="主要是一些Minecraft相关的东西"><div class="icon"><i class="fas fa-cubes"></i></div><div class="info"><div class="name">红怪的Modrinth主页</div><div class="desc">主要是一些Minecraft相关的东西</div></div><span class="badge">模组</span></a>
-        <div class="link-card" data-name="PCL主页" data-desc="点击弹窗复制内容" onclick="showPCLModal()"><div class="icon"><i class="fas fa-rocket"></i></div><div class="info"><div class="name">PCL主页</div><div class="desc">点击弹窗复制内容</div></div><span class="badge">复制</span></div>
-        <div class="link-card" data-name="QQ社区" data-desc="点击复制QQ号" onclick="showQQModal()"><div class="icon"><i class="fab fa-qq"></i></div><div class="info"><div class="name">QQ社区</div><div class="desc">点击复制QQ号</div></div><span class="badge">QQ号</span></div>
-      </div>
-      <div class="no-result" id="noResult">😢 没有找到相关链接</div>
-
-      <!-- 小鸡头像在线工具 -->
-      <div class="tool-section">
-        <div class="tool-title"><i class="fas fa-pen-fancy"></i> 小鸡头像在线工具 <span class="badge">在线</span></div>
-        <input type="file" id="chickInput" accept="image/*" style="display:none">
-        <div class="tool-row">
-          <button class="btn-accent" onclick="document.getElementById('chickInput').click()"><i class="fas fa-folder-open"></i> 选择图片</button>
-          <button class="btn-success" id="chickGenBtn" disabled onclick="generateChick()"><i class="fas fa-play"></i> 生成</button>
-          <button class="btn-danger" id="chickResetBtn" onclick="resetChick()" style="display:none"><i class="fas fa-undo"></i> 重置</button>
-          <span style="font-size:.8rem;color:var(--text2);margin-left:8px" id="chickStatus">未选择图片</span>
-        </div>
-        <div class="chick-preview" id="chickPreview">
-          <div class="box"><div class="img" id="chickOriginal"><span style="color:var(--text3);font-size:.8rem">原图</span></div><p>原图</p></div>
-          <div class="box"><div class="img" id="chickResult"><span style="color:var(--text3);font-size:.8rem">效果图</span></div><p>效果图</p></div>
-        </div>
-      </div>
-
-      <!-- MC服务器状态查询 -->
-      <div class="tool-section">
-        <div class="tool-title"><i class="fas fa-server"></i> MC服务器状态查询 <span class="badge">工具</span></div>
-        <div class="tool-row">
-          <div class="java-input" id="javaInput">
-            <input type="text" id="mcInput" placeholder="输入域名或IP，如 mc.example.com:25565">
-          </div>
-          <div class="bedrock-inputs" id="bedrockInputs">
-            <input type="text" id="mcBedrockHost" placeholder="主机地址">
-            <input type="text" id="mcBedrockPort" placeholder="端口" value="19132" style="max-width:100px">
-          </div>
-          <button class="btn-accent" onclick="queryMC()"><i class="fas fa-search"></i> 查询</button>
-        </div>
-        <div style="display:flex;gap:12px;margin-top:10px;flex-wrap:wrap;align-items:center">
-          <label style="font-size:.85rem;color:var(--text2);display:flex;align-items:center;gap:6px;cursor:pointer">
-            <input type="checkbox" id="mcBedrock" onchange="toggleBedrock()"> 基岩版
-          </label>
-        </div>
-        <div class="mc-result" id="mcResult">
-          <div class="rcard">
-            <div class="rheader"><span class="raddr" id="mcAddr">—</span><span class="rstatus" id="mcStatus">未知</span></div>
-            <div id="mcDetails"></div>
-            <div style="margin-top:10px;padding-top:10px;border-top:1px solid var(--border);display:flex;gap:12px;flex-wrap:wrap;font-size:.8rem;color:var(--text2)">
-              <span>📶 Ping: <span id="mcPing" style="color:var(--text);font-weight:500">--</span></span>
-              <span>🌍 位置: <span id="mcGeo" style="color:var(--text);font-weight:500">--</span></span>
-              <button class="btn-secondary" style="padding:2px 12px;font-size:.75rem" onclick="copyMCAddr()">📋 复制地址</button>
-            </div>
-          </div>
-        </div>
-        <div class="history-section" style="margin-top:12px">
-          <div class="history-header"><span class="htitle">📜 最近查询</span><button class="hclear" onclick="clearMCHistory()">清空</button></div>
-          <div class="history-tags" id="mcHistory"></div>
-        </div>
-      </div>
-    </main>
-
-    <aside class="aside-content">
-      <div class="card-widget card-info">
-        <div class="avatar"><img src="https://toolbox.hg-chat.win/icon/icon.png" alt="红怪" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2272%22 height=%2272%22%3E%3Crect fill=%22%234a6fa5%22 width=%2272%22 height=%2272%22/%3E%3Ctext x=%2236%22 y=%2246%22 text-anchor=%22middle%22 fill=%22white%22 font-size=%2230%22 font-family=%22sans-serif%22%3E⛏%3C/text%3E%3C/svg%3E'"></div>
-        <div class="name">红怪</div>
-        <div class="bio">⛏️ 红石小白</div>
-        <div class="stats"><div><div class="num">2</div><div class="label">工具</div></div><div><div class="num">7</div><div class="label">链接</div></div><div><div class="num">4</div><div class="label">分类</div></div></div>
-        <div class="social-icons">
-          <a href="https://link.hg-chat.win/bilibili" target="_blank" title="B站"><i class="fab fa-bilibili"></i></a>
-          <a href="https://link.hg-chat.win/youtube" target="_blank" title="YouTube"><i class="fab fa-youtube"></i></a>
-          <a href="https://link.hg-chat.win/github" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
-          <a href="https://link.hg-chat.win/discord" target="_blank" title="Discord"><i class="fab fa-discord"></i></a>
-          <a href="https://link.hg-chat.win/modrinth" target="_blank" title="Modrinth"><i class="fas fa-cubes"></i></a>
-        </div>
-      </div>
-    </aside>
-  </div>
-
-  <footer id="footer">
-    <p>© 2026 红怪工具箱 · 用 <span class="heart">❤</span> 和 <span style="color:var(--orange);">⛏️</span> 搭建</p>
-  </footer>
-</div>
-
-<div id="rightside">
-  <button onclick="toggleTheme()" title="切换主题"><i class="fas fa-adjust"></i></button>
-  <button onclick="window.scrollTo({top:0,behavior:'smooth'})" title="回到顶部"><i class="fas fa-arrow-up"></i></button>
-</div>
-
-<div class="modal-overlay" id="pclModal"><div class="modal-box"><h3>📋 复制内容</h3><div class="tip">复制到设置→个性化→主页→联网更新→下载地址</div><div class="content">https://toolbox.hg-chat.win/Custom.xaml</div><div class="btn-group"><button class="btn-primary" onclick="copyText('https://toolbox.hg-chat.win/Custom.xaml',this)">复制</button><button class="btn-secondary" onclick="closeModal('pclModal')">关闭</button></div></div></div>
-<div class="modal-overlay" id="qqModal"><div class="modal-box"><h3>📋 QQ社区</h3><div class="content">301595234</div><div class="btn-group"><button class="btn-primary" onclick="copyText('301595234',this)">复制</button><button class="btn-secondary" onclick="closeModal('qqModal')">关闭</button></div></div></div>
-
-<script>
-  // Cookie 与主题切换 (保持不变)
-  function getCookie(name){const v='; '+document.cookie;const parts=v.split('; '+name+'=');if(parts.length===2)return parts.pop().split(';').shift();return null}
-  function setCookie(name,value,days){const d=new Date();d.setTime(d.getTime()+days*86400000);document.cookie=name+'='+value+'; expires='+d.toUTCString()+'; path=/'}
-
-  function toggleTheme(){
-    const isDark=document.documentElement.getAttribute('data-theme')==='dark';
-    const newTheme=isDark?'light':'dark';
-    document.documentElement.setAttribute('data-theme',newTheme);
-    setCookie('theme',newTheme,30);
-    const btn=document.querySelector('#themeBtn i');
-    if(btn)btn.className=newTheme==='dark'?'fas fa-sun':'fas fa-moon';
-    const rightBtn=document.querySelector('#rightside button:first-child i');
-    if(rightBtn)rightBtn.className='fas fa-adjust';
-  }
-
-  function initTheme(){
-    const saved=getCookie('theme');
-    if(saved==='dark'){
-      document.documentElement.setAttribute('data-theme','dark');
-      document.querySelector('#themeBtn i').className='fas fa-sun';
-    }else{
-      document.documentElement.setAttribute('data-theme','light');
-      document.querySelector('#themeBtn i').className='fas fa-moon';
-    }
-  }
-  initTheme();
-
-  function showPCLModal(){document.getElementById('pclModal').classList.add('active')}
-  function showQQModal(){document.getElementById('qqModal').classList.add('active')}
-  function closeModal(id){document.getElementById(id).classList.remove('active')}
-  function copyText(text,btn){navigator.clipboard.writeText(text).then(()=>{const t=btn.textContent;btn.textContent='✅ 已复制';setTimeout(()=>{btn.textContent=t},1500)})}
-  document.querySelectorAll('.modal-overlay').forEach(el=>{el.addEventListener('click',function(e){if(e.target===this)this.classList.remove('active')})});
-  document.getElementById('searchBtn').addEventListener('click',function(){const q=document.getElementById('searchInput').value.trim().toLowerCase();const cards=document.querySelectorAll('.link-card');let show=false;cards.forEach(c=>{const n=c.dataset.name?.toLowerCase()||'',d=c.dataset.desc?.toLowerCase()||'';if(q===''||n.includes(q)||d.includes(q)){c.classList.remove('hidden');show=true}else{c.classList.add('hidden')}});document.getElementById('noResult').classList.toggle('show',!show&&q!=='')});
-  document.getElementById('searchInput').addEventListener('input',function(){if(this.value.trim()==='')document.getElementById('searchBtn').click()});
-  document.getElementById('searchInput').addEventListener('keydown',function(e){if(e.key==='Enter')document.getElementById('searchBtn').click()});
-
-  function toggleBedrock(){
-    const checked=document.getElementById('mcBedrock').checked;
-    document.getElementById('javaInput').classList.toggle('hide',checked);
-    document.getElementById('bedrockInputs').classList.toggle('show',checked);
-    if(checked){document.getElementById('mcInput').value=''}else{document.getElementById('mcBedrockHost').value='';document.getElementById('mcBedrockPort').value='19132'}
-    document.getElementById('mcResult').classList.remove('show')}
-
-  let chickFile=null;
-  document.getElementById('chickInput').addEventListener('change',function(e){const f=e.target.files[0];if(f){chickFile=f;document.getElementById('chickStatus').textContent='✅ '+f.name;document.getElementById('chickGenBtn').disabled=false;document.getElementById('chickResetBtn').style.display='inline-block';const url=URL.createObjectURL(f);document.getElementById('chickOriginal').innerHTML='<img src="'+url+'" alt="原图">';document.getElementById('chickPreview').classList.add('show')}});
-  function generateChick(){if(!chickFile)return;const img=new Image;img.onload=function(){const c=document.createElement('canvas');c.width=1000;c.height=1000;const ctx=c.getContext('2d');ctx.drawImage(img,0,0,1000,1000);const chick=new Image;chick.crossOrigin='Anonymous';chick.onload=function(){const x=(1000-chick.width)/2,y=(1000-chick.height)/2;ctx.drawImage(chick,x,y);c.toBlob(function(b){const url=URL.createObjectURL(b);document.getElementById('chickResult').innerHTML='<img src="'+url+'" alt="效果图">';document.getElementById('chickStatus').textContent='✅ 生成成功！点击"保存"下载';const btn=document.createElement('button');btn.className='btn-success';btn.innerHTML='<i class="fas fa-save"></i> 保存';btn.onclick=function(){const a=document.createElement('a');a.href=url;a.download='chick_avatar_'+Date.now()+'.png';a.click()};const old=document.querySelector('#chickPreview .box:last-child .btn-success');if(old)old.remove();document.querySelector('#chickPreview .box:last-child').appendChild(btn)},'image/png')};chick.src='/chick.png?t='+Date.now()};img.src=URL.createObjectURL(chickFile)}
-  function resetChick(){chickFile=null;document.getElementById('chickInput').value='';document.getElementById('chickStatus').textContent='未选择图片';document.getElementById('chickGenBtn').disabled=true;document.getElementById('chickResetBtn').style.display='none';document.getElementById('chickOriginal').innerHTML='<span style="color:var(--text3);font-size:.8rem">原图</span>';document.getElementById('chickResult').innerHTML='<span style="color:var(--text3);font-size:.8rem">效果图</span>';const btn=document.querySelector('#chickPreview .box:last-child .btn-success');if(btn)btn.remove();document.getElementById('chickPreview').classList.remove('show')}
-
-  let mcHistory=JSON.parse(localStorage.getItem('mcHistory')||'[]');
-  function getMCAddr(){if(document.getElementById('mcBedrock').checked){const h=document.getElementById('mcBedrockHost').value.trim(),p=document.getElementById('mcBedrockPort').value.trim()||'19132';return h?h+':'+p:null}return document.getElementById('mcInput').value.trim()||null}
-  function renderMCHistory(){const c=document.getElementById('mcHistory');if(!mcHistory.length){c.innerHTML='<span style="color:var(--text3);font-size:.75rem">暂无查询记录</span>';return}c.innerHTML=mcHistory.map(a=>'<span class="history-tag" onclick="queryMCFast(\''+a+'\')">'+a+'</span>').join('')}
-  function queryMCFast(a){document.getElementById('mcInput').value=a;queryMC()}
-  function clearMCHistory(){mcHistory=[];localStorage.removeItem('mcHistory');renderMCHistory()}
-  function addMCHistory(a){mcHistory=mcHistory.filter(x=>x!==a);mcHistory.unshift(a);if(mcHistory.length>10)mcHistory.pop();localStorage.setItem('mcHistory',JSON.stringify(mcHistory));renderMCHistory()}
-  async function queryMC(){const addr=getMCAddr();if(!addr){alert('请输入地址');return}const isBedrock=document.getElementById('mcBedrock').checked;const r=document.getElementById('mcResult');r.classList.remove('show');document.getElementById('mcAddr').textContent=addr;document.getElementById('mcStatus').className='rstatus unknown';document.getElementById('mcStatus').textContent='查询中...';try{const h=addr.split(':')[0],p=addr.split(':')[1]||(isBedrock?19132:25565);const url=(isBedrock?'https://api.mcsrvstat.us/bedrock/3/':'https://api.mcsrvstat.us/3/')+encodeURIComponent(h)+(p?':'+p:'');const resp=await fetch(url);const data=await resp.json();const ping=await fetch('https://v2.xxapi.cn/api/ping?url='+encodeURIComponent(h)).then(r=>r.json()).then(d=>d.data?.time?Math.round(parseFloat(d.data.time)):0).catch(()=>0);addMCHistory(addr);showMCResult(addr,data,ping,isBedrock)}catch(e){document.getElementById('mcStatus').className='rstatus offline';document.getElementById('mcStatus').textContent='请求失败';document.getElementById('mcDetails').innerHTML='<div class="rinfo"><span class="rlabel">错误</span><span class="rvalue">请检查网络或稍后重试</span></div>';r.classList.add('show')}}
-  function showMCResult(addr,data,ping,isBedrock){const r=document.getElementById('mcResult');const st=document.getElementById('mcStatus');const dt=document.getElementById('mcDetails');const isOn=data.online===true;st.className='rstatus '+(isOn?'online':'offline');st.textContent=isOn?'在线':'离线';let html='';if(isOn){if(data.motd?.clean?.length){let m=data.motd.clean.join(' ').replace(/\n/g,' ').trim();html+='<div class="rinfo"><span class="rlabel">标语</span><span class="rvalue motd">'+m+'</span></div>'}html+='<div class="rinfo"><span class="rlabel">版本</span><span class="rvalue">'+(data.version||'未知')+'</span></div>';if(isBedrock){html+='<div class="rinfo"><span class="rlabel">版本类型</span><span class="rvalue">Bedrock</span></div>';if(data.gamemode)html+='<div class="rinfo"><span class="rlabel">游戏模式</span><span class="rvalue">'+data.gamemode+'</span></div>'}else{if(data.software)html+='<div class="rinfo"><span class="rlabel">服务端</span><span class="rvalue">'+data.software+'</span></div>';if(data.plugins?.length){const p=data.plugins.map(x=>x.name+(x.version?' v'+x.version:'')).join(', ');html+='<div class="rinfo"><span class="rlabel">插件</span><span class="rvalue motd">'+p+'</span></div>'}}html+='<div class="rinfo"><span class="rlabel">玩家</span><span class="rvalue">'+(data.players?.online||0)+' / '+(data.players?.max||'?')+'</span></div>';if(data.players?.list?.length){const names=data.players.list.map(x=>x.name||x).join(', ');html+='<div class="rinfo"><span class="rlabel">在线玩家</span><span class="rvalue" style="font-size:.8rem;color:var(--text2)">'+names+'</span></div>'}}else{html+='<div class="rinfo"><span class="rlabel">状态</span><span class="rvalue" style="color:var(--offline)">该地址可能不是Minecraft服务器，或服务器已关闭</span></div>'}dt.innerHTML=html;if(ping>0)document.getElementById('mcPing').textContent=ping+'ms';else document.getElementById('mcPing').textContent='--';try{fetch('https://api.ip.sb/geoip/'+addr.split(':')[0]).then(r=>r.json()).then(d=>{document.getElementById('mcGeo').textContent=d.country||'--'}).catch(()=>{document.getElementById('mcGeo').textContent='--'})}catch(e){document.getElementById('mcGeo').textContent='--'}document.getElementById('mcAddr').textContent=addr;r.classList.add('show')}
-  function copyMCAddr(){const a=document.getElementById('mcAddr').textContent;if(a&&a!=='—'){navigator.clipboard.writeText(a).then(()=>{const btn=document.querySelector('#mcResult .btn-secondary');if(btn){const t=btn.textContent;btn.textContent='✅ 已复制';setTimeout(()=>{btn.textContent='📋 复制地址'},1500)}})}}
-  document.getElementById('mcInput').addEventListener('keydown',function(e){if(e.key==='Enter')queryMC()});
-  document.getElementById('mcBedrockHost').addEventListener('keydown',function(e){if(e.key==='Enter')queryMC()});
-  document.getElementById('mcBedrockPort').addEventListener('keydown',function(e){if(e.key==='Enter')queryMC()});
-
-  renderMCHistory();
-  document.addEventListener('keydown',function(e){if(e.key==='Escape'){document.querySelectorAll('.modal-overlay.active').forEach(el=>el.classList.remove('active'))}});
-</script>
+  <div class="error-code">404</div>
+  <div class="error-msg">内容已被删除</div>
 </body>
 </html>
